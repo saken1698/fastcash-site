@@ -1,0 +1,187 @@
+.calculation{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.loan_title{
+    margin-top: 0;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: left;
+    font-family: 'FF Good Pro Regular';
+}
+
+.calculation_container{
+    margin-top: 20px;
+    margin-right: 20px;
+    background-color: #efefef;
+    border-radius: 20px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.calculation_info{
+    margin-top: 20px;
+    background-color: #efefef;
+    border-radius: 20px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+
+}
+
+.results{
+    display: flex;
+    flex-direction: column;
+    width: 320px;
+}
+
+.result{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.result_text{
+    color: #3d803d;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    margin-top: 0;
+    font-family: "FF Good Pro Medium";
+    font-weight: 500;
+    text-align: left;
+}
+
+.loan_sum{
+    /* position: relative; */
+    width: 100%;
+}
+
+.zipper{
+    position: relative;
+}
+.zipper_text{
+    position: absolute;
+    top: -5px;
+    left: 0px;
+    text-align: right;
+    font-size: 0.75rem;
+    font-weight: 400;
+    line-height: 1.2;
+    font-family: 'Good Pro Regular';
+}
+
+.svg_icon{
+    width: 16px;
+    height: 16px;
+    margin-left: 5px;
+    /* position: absolute; */
+    bottom: 0px;
+    fill: gray;
+}
+
+.hint{
+    display: flex;
+}
+
+input[type=range] {
+    height: 26px;
+    -webkit-appearance: none;
+    margin: 10px 0;
+    width: 100%;
+    background-color: #efefef;
+  }
+  input[type=range]:focus {
+    outline: none;
+  }
+  input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 2px;
+    cursor: pointer;
+    box-shadow: 0px 0px 0px #C4C4C4;
+    background: #c4c4c4;
+    border-radius: 1px;
+    border: 0px solid #C4C4C4;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    box-shadow: 0px 0px 0px #C4C4C4;
+    border: 0px solid #C4C4C4;
+    height: 20px;
+    width: 20px;
+    border-radius: 10px;
+    background: #C4C4C4;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -9px;
+  }
+  input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #c4c4c4;
+  }
+  input[type=range]::-moz-range-track {
+    width: 100%;
+    height: 2px;
+    cursor: pointer;
+    box-shadow: 0px 0px 0px #C4C4C4;
+    background: #c4c4c4;
+    border-radius: 1px;
+    border: 0px solid #C4C4C4;
+  }
+  input[type=range]::-moz-range-thumb {
+    box-shadow: 0px 0px 0px #C4C4C4;
+    border: 0px solid #C4C4C4;
+    height: 20px;
+    width: 20px;
+    border-radius: 10px;
+    background: #C4C4C4;
+    cursor: pointer;
+  }
+  input[type=range]::-ms-track {
+    width: 100%;
+    height: 2px;
+    cursor: pointer;
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+  }
+  input[type=range]::-ms-fill-lower {
+    background: #c4c4c4;
+    border: 0px solid #C4C4C4;
+    border-radius: 2px;
+    box-shadow: 0px 0px 0px #C4C4C4;
+  }
+  input[type=range]::-ms-fill-upper {
+    background: #c4c4c4;
+    border: 0px solid #C4C4C4;
+    border-radius: 2px;
+    box-shadow: 0px 0px 0px #C4C4C4;
+  }
+  input[type=range]::-ms-thumb {
+    margin-top: 1px;
+    box-shadow: 0px 0px 0px #C4C4C4;
+    border: 0px solid #C4C4C4;
+    height: 20px;
+    width: 20px;
+    border-radius: 10px;
+    background: #C4C4C4;
+    cursor: pointer;
+  }  
+  input[type=range]:focus::-ms-fill-lower {
+    background: #c4c4c4;
+  }
+  input[type=range]:focus::-ms-fill-upper {
+    background: #c4c4c4;
+  }
+
+  .red{
+    color: red;
+    margin: 0;
+    margin-bottom: 10px;
+    font-family: 'FF Good Pro Medium';
+}

@@ -1,0 +1,91 @@
+@font-face {
+    font-family: 'FF Good Pro Regular';
+    src: local('FF Good Pro Regular'), local('FF-Good-Pro-Regular'),
+        url('../../fonts/regular/FFGoodPro-Regular.woff2') format('woff2'),
+        url('../../fonts/FFGoodPro-Regular.woff') format('woff'),
+        url('../../fonts/regular/FFGoodPro-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }
+
+.container{
+    margin: 0;
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 32px;
+}
+
+.section{
+    display: flex;
+    justify-content: start;
+    padding: 0px 24px;
+    flex-direction: column;
+    font-family:  'FF Good Pro Regular';
+}
+
+ 
+.title{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 44px;
+    line-height: 54px;
+    margin: 0;
+    text-align: left;
+}
+.discription{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.text{
+    margin-top: 24px;
+    margin-bottom: 8px;
+    text-align: left;
+    font-size: 16px;
+    font-family: FF Good Pro Regular;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.text:last-child{
+    margin-top: 0;
+    margin-bottom: 24px;
+}
+
+.requisites_headline{
+    text-align: left;
+    margin: 0;
+    margin-bottom: 16px;
+    font-size: 16px;
+    font-family: 'FF Good Pro Regular';
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.requisites_info{
+    display: flex;
+    margin-bottom: 8px;
+    align-items: center;
+
+}
+
+.requisites_title{
+    margin: 0;
+    margin-right: 10px;
+    color: #000;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.requisites_text{
+    margin: 0;
+    font-family: "FF Good Pro Regular";
+    color: #000;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+}

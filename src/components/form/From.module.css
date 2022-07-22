@@ -1,0 +1,83 @@
+@font-face {
+    font-family: 'FF Good Pro Regular';
+    src: local('FF Good Pro Regular'), local('FF-Good-Pro-Regular'),
+        url('../../fonts/FFGoodPro-Regular.woff2') format('woff2'),
+        url('../../fonts/FFGoodPro-Regular.woff') format('woff'),
+        url('../../fonts/FFGoodPro-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'FF Good Pro Medium';
+    src: local('FF Good Pro Medium'), local('FF-Good-Pro-Medium'),
+        url('../../fonts/FFGoodPro-Medium.woff2') format('woff2'),
+        url('../../fonts/FFGoodPro-Medium.woff') format('woff'),
+        url('../../fonts/FFGoodPro-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+  }
+
+.form{
+    margin-top: 20px;
+    background-color: #efefef;
+    border-radius: 20px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.loan_title{
+    margin-top: 0;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: left;
+    font-family: 'FF Good Pro Regular';
+}
+
+.title_regular{
+    font-size: 1.2 rem;
+    margin-top: 0;
+    font-weight: 600;
+    text-align: left;
+}
+
+.inputs{
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.input_part{
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+
+}
+
+.input:last-child{
+    margin-right: 0;
+}
+
+.input{
+
+    padding: 7px 15px;
+    border: none;
+    text-align: center;
+    max-width: 150px;
+}
+
+.input:focus{
+    outline: none;
+}
+
+
+.label{
+    color: #636363;
+    font-family: "FF Good Pro Light";
+    font-weight: 300;
+    margin-bottom: 5px;
+    font-size: 12px;
+    text-align: left;
+}

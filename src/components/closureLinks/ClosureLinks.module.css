@@ -1,0 +1,21 @@
+.links{
+    margin-top: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-items: flex-start;
+}
+
+.link{
+    margin-right: 20px;
+    text-decoration: none;
+    font-size: 14px;
+    font-style: normal;
+    cursor: pointer;
+    color: black;
+}
+
+.link:hover{
+    opacity: .5;
+    transition: .5s;
+}

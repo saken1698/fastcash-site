@@ -1,0 +1,298 @@
+@font-face {
+    font-family: 'FF Good Pro Regular';
+    src: local('FF Good Pro Regular'), local('FF-Good-Pro-Regular'),
+        url('../../fonts/FFGoodPro-Regular.woff2') format('woff2'),
+        url('../../fonts/FFGoodPro-Regular.woff') format('woff'),
+        url('../../fonts/FFGoodPro-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'FF Good Pro Medium';
+    src: local('FF Good Pro Medium'), local('FF-Good-Pro-Medium'),
+        url('../../fonts/FFGoodPro-Medium.woff2') format('woff2'),
+        url('../../fonts/FFGoodPro-Medium.woff') format('woff'),
+        url('../../fonts/FFGoodPro-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+  }
+
+.warning{
+    background: #e3f2fd;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.warning_text{
+    font-size: 1.25rem;
+    font-family: 'FF Good Pro Regular';
+    font-weight: bold;
+
+}
+
+.warning_red{
+    color: red;
+    margin-left: 5px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.instructions{
+    padding: 60px 15px;
+}
+
+.headline{
+    color: #3d803d;
+    font-family: "FF Good Pro Regular";
+    margin-bottom: 50px;
+    font-size: 2rem;
+    margin-top: 0;
+    line-height: normal;
+    text-align: left;
+    font-weight: bold;
+}
+.step{
+    border-right: 1px solid #a8a8a7;
+    padding-right: 50px;
+    font-family: "FF Good Pro Regular";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+}
+
+.step:last-child{
+    border: none;
+}
+
+.num{
+    font-size: 84px;
+    -webkit-text-stroke: 1px #3d803d;
+    -webkit-text-fill-color: white;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 4;
+    position: relative;
+    margin-top: 0;
+    font-family: "FF Good Pro Medium";
+    line-height: normal;
+    text-align: left;
+    font-style: normal;
+    font-weight: bold;
+}
+
+.num:after{
+    content: "";
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    top: -10px;
+    left: -5px;
+    mix-blend-mode: color-burn;
+    background-color: #efefef;
+}
+
+.text{
+    font-family: "FF Good Pro Regular";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    text-align: left;
+}
+
+.steps{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 80px;
+}
+
+
+.procedure_headline{
+    font-size: 16px;
+    font-family: FF Good Pro Medium;
+    font-weight: 500;
+    line-height: 1.235;
+    text-align: left;
+    margin-left: 24px;
+}
+
+.methods{
+    padding: 40px 50px;
+    border-radius: 120px 0;
+    background-color: #2d7c2d;
+    margin-left: 24px;
+    margin-right: 24px;
+    z-index: 3;
+    position: relative;
+}
+
+.methods_title{
+    font-size: 16px;
+    font-family: FF Good Pro Medium;
+    font-weight: 500;
+    line-height: 1.235;
+    text-align: left;
+    color: white;
+    padding-left: 10px;
+    margin: 0;
+}
+
+.methods_list{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.method{
+    display: flex;
+    padding: 16px;
+    align-items: center;
+}
+
+.method_num{
+    border: 1px solid #fff;
+    border-radius: 50%;
+    background-color: #fff;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.method{
+    color: rgb(45, 124, 45);
+    line-height: 8px;
+    font-family: "FF Good Pro Regular";
+    font-size: 1.25rem;
+    width: 30%;
+}
+
+.method_text{
+    color: rgb(255, 255, 255);
+    margin-left: 8px;
+    text-transform: uppercase;
+    font-family: "FF Good Pro Regular";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+}
+
+.procedure_stepDis{
+    color: rgb(79, 157, 58);
+    position: absolute;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.75;
+    text-transform: uppercase;
+
+    top: 23%;
+    margin-left: auto;
+margin-right: auto;
+left: 0;
+right: 0;
+}
+
+.procedure_step{
+    position: relative;
+    margin-top: -35px;
+}
+.procedure_number{
+    position: relative;
+    font-family: 'Good Pro Medium';
+    font-weight: bold;
+    opacity: 0.05;
+    line-height: 1.167;
+    font-size: 6rem;
+    color: #000;
+    margin: 0;
+}
+
+.contacts{
+    background-color: #fff;
+    position: relative;
+    top: -360px;
+     margin-bottom: -360px;
+    padding: 20px;
+    width: 19%;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 2;
+}
+
+.contacts_titles{
+    font-size: 16px;
+    font-family: FF Good Pro Medium;
+    font-weight: 500;
+    line-height: 1.235;
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+.map{
+    position: relative;
+    top:-140px;
+    z-index: 1;
+}
+
+.contacts_phone{
+    display: flex;
+    font-weight: 700;
+    font-family: 'FF Good Pro Regular';
+    font-size: 14px;
+    align-items: center;
+}
+
+.email{
+    font-weight: 700;
+    font-family: 'FF Good Pro Regular';
+    font-size: 14px;
+    margin-left: 8px;
+}
+
+.phone_list{
+    display: flex;
+    flex-direction: column;
+}
+
+.phone{
+    margin: 0;
+    text-align: left;
+}
+
+.contact_service{
+    font-weight: 700;
+    font-family: 'FF Good Pro Regular';
+    font-size: 14px;
+    text-align: center;
+    margin-top: 16px;
+
+}
+
+.service_phone{
+    margin: 0;
+    margin-top: 2px;
+}
+
+.button{
+    margin:16px  auto;
+    width: 114px;
+    height: 38px;
+    background-color: #4f9d3a;
+    border: 1px solid #4f9d3a;
+    color: #fff;
+    box-shadow: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.schedule{
+    font-weight: 700;
+    font-family: 'FF Good Pro Regular';
+    font-size: 14px;
+    text-align: center;
+    margin: 0;
+}

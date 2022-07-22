@@ -1,0 +1,266 @@
+@font-face {
+    font-family: 'FF Good Pro Regular';
+    src: local('FF Good Pro Regular'), local('FF-Good-Pro-Regular'),
+        url('../../fonts/FFGoodPro-Regular.woff2') format('woff2'),
+        url('../../fonts/FFGoodPro-Regular.woff') format('woff'),
+        url('../../fonts/FFGoodPro-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'FF Good Pro Medium';
+    src: local('FF Good Pro Medium'), local('FF-Good-Pro-Medium'),
+        url('../../fonts/FFGoodPro-Medium.woff2') format('woff2'),
+        url('../../fonts/FFGoodPro-Medium.woff') format('woff'),
+        url('../../fonts/FFGoodPro-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+  }
+
+
+.section{
+    display: flex;
+    justify-content: start;
+    padding: 0px 24px;
+    flex-direction: column;
+}
+
+
+.title{
+    font-size: 1.5rem;
+    font-family: FF Good Pro Regular;
+    font-weight: bold;
+    line-height: 1.334;
+    margin: 0;
+    text-align: left;
+    margin-top: 32px;
+    margin-left: 32px;
+
+    /* padding-right: 32px; */
+}
+
+.container{
+    margin: 0;
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* padding: 0 32px; */
+    /* width: 100%; */
+}
+
+.credit_count{
+    /* padding: 27px; */
+    border-radius: 8px;
+    background-color: #011014;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 300px;
+    width: 100%;
+
+}
+
+.credit_title{
+    font-family: "FF Good Pro Regular";
+    font-weight: 400;
+    line-height: 24px;
+    font-size: 24px;
+    color: #fff
+}
+
+.credit_info{
+    width: 70%;
+    height: 100%;
+
+}
+
+.credit_text{
+    font-size: 13px;
+    margin-bottom: 15px;
+    color: white;
+    text-transform: uppercase;
+    font-family: "FF Good Pro Regular";
+    font-weight: 400;
+    line-height: 18px;
+    font-size: 18px;
+    z-index: 2;
+}
+
+.creditList{
+    width: 100%;
+    height: 70%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.number{
+    font-weight: 700;
+    line-height: 80px;
+    font-size: 80px;
+    color: #62ff04;
+    font-family: "FF Good Pro Medium";
+    z-index: 2;
+    margin: 0;
+}
+
+.border{
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    height: 70%;
+}
+.image{
+    width: 285px;
+    height: 350px;
+    position: absolute;
+    top: -40px;
+    left:800px;
+}
+
+.info{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.card{
+    width: 23%;
+    background: #011014;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+}
+
+.svg{
+    width: 70px;
+    height: 70px;
+    margin: 20px;
+}
+
+.card_text{
+    color: white;
+    font-family: "FF Good Pro Regular";
+    font-weight: 400;
+    line-height: 18px;
+    font-size: 18px;
+    max-width: 260px;
+    padding: 10px 30px 30px 30px;
+    text-align: left;
+}
+
+.card_number{
+    padding-left: 30px;
+    font-weight: 700;
+    line-height: 64px;
+    font-size: 64px;
+    color: #62ff04;
+    font-family: "FF Good Pro Medium";
+    z-index: 2;
+    margin: 0;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: column;
+    margin-left: 27px;
+    margin-top: 27px;
+}
+
+.button{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 290px;
+    border-radius: 10px;
+    border: none;
+    height: 54px;
+    margin-top: 10px;
+    cursor: pointer;
+    color: white;
+    font-family: "FF Good Pro Regular" !important;
+    font-weight: 400;
+    line-height: 20px;
+    font-size: 20px;
+    background: rgb(4, 192, 33);
+}
+
+
+.button_svg{
+    width: 30px;
+    height: 30px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.count{
+    /* padding: 27px; */
+    border-radius: 8px;
+    background-color: #011014;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 300px;
+    width:100%;
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+.count_text{
+    font-size: 13px;
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: white;
+    text-transform: uppercase;
+    font-family: "FF Good Pro Regular";
+    font-weight: 400;
+    line-height: 18px;
+    font-size: 18px;
+    z-index: 2;
+}
+
+.count_number{
+    font-weight: 400;
+    line-height: 40px;
+    font-size: 40px;
+    color: #62ff04;
+    font-family: "FF Good Pro Medium";
+    z-index: 2;
+    margin: 0;
+}
+
+.analyses{
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+.result_text{
+    font-size: 16px;
+    color: white;
+}
+
+.analyses{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #011014;
+    width: 100%;
+    border-radius: 8px;
+    margin-top: 24px;
+}
+
+.analyses_results{
+    width: 100%;
+}
+
+.analyses_result{
+    margin: 0 10px;
+display: flex;
+justify-content: space-between;
+}
