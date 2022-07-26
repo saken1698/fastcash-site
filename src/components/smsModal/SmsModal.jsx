@@ -1,40 +1,59 @@
 import React from "react";
 import classes from "./smsModal.module.css";
 import { useState, useEffect, useRef } from "react";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { PostSmsCode } from "../../hooks/postSmsCode";
 
-export function SmsModal({ values, handleChange, modalState, switchModal }) {
-  const [n, n2, n3, n4] = values;
+export function SmsModal({ modalState, switchModal }) {
   const number = useRef(null);
   const number2 = useRef(null);
   const number3 = useRef(null);
   const number4 = useRef(null);
-  const [smsCode, setSmsCode] = useState([0, 0, 0, 0]);
+  const { values, errors, handleBlur, handleChange, touched } = useFormik({
+    initialValues: {
+      number1: "",
+      number2: "",
+      number3: "",
+      number4: "",
+    },
+    validationSchema: Yup.object({
+      number1: Yup.string()
+        .matches(/^[0-9]+$/, "Must be only digits")
+        .required("required"),
+      number2: Yup.string()
+        .matches(/^[0-9]+$/, "Must be only digits")
+        .required("required"),
+      number3: Yup.string()
+        .matches(/^[0-9]+$/, "Must be only digits")
+        .required("required"),
+      number4: Yup.string()
+        .matches(/^[0-9]+$/, "Must be only digits")
+        .required("required"),
+    }),
+  });
+
+  function checkSmsCode() {
+    if (touched.number1 && touched.number2 && touched.number3) {
+      if (
+        !errors.number1 &&
+        !errors.number2 &&
+        !errors.number3 &&
+        !errors.number4
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
+
   function changeFocus(ref, value) {
     if (value.length === 1) {
       ref.current.focus();
     }
   }
-  const [timerState, setTimerState] = useState(false);
   const smsButton = useRef(null);
-
-  //   function timer() {
-  //     setInterval(function () {
-  //       if (seconds === 0 || timerState === true) {
-  //         clearInterval(timer);
-  //         setTimerState(true);
-  //         smsButton.current.textContent = "Запросить код повторно";
-  //       } else {
-  //         let strTimer = `Запросить код через 00:${seconds}`;
-  //         smsButton.current.textContent = strTimer;
-  //       }
-  //       --seconds;
-  //     }, 1000);
-  //   }
-
-  //   const [modalState, setModalState] = useState(true);
-  //   function switchModal(state) {
-  //     setModalState(state);
-  //   }
 
   const [timer1, setTimer1] = React.useState(20);
 
@@ -85,11 +104,12 @@ export function SmsModal({ values, handleChange, modalState, switchModal }) {
             className={classes.modal_input}
             ref={number}
             name="number1"
-            value={n}
+            value={values.number1}
             onKeyUp={() => {
-              changeFocus(number2, n);
+              changeFocus(number2, values.number1);
             }}
             onChange={handleChange}
+            onBlur={handleBlur}
             maxLength={1}
           />
 
@@ -97,22 +117,24 @@ export function SmsModal({ values, handleChange, modalState, switchModal }) {
             className={classes.modal_input}
             ref={number2}
             onKeyUp={() => {
-              changeFocus(number3, n2);
+              changeFocus(number3, values.number2);
             }}
             name="number2"
             onChange={handleChange}
-            value={n2}
+            onBlur={handleBlur}
+            value={values.number2}
             maxLength={1}
           />
           <input
             className={classes.modal_input}
             ref={number3}
             onKeyUp={() => {
-              changeFocus(number4, n3);
+              changeFocus(number4, values.number3);
             }}
             name="number3"
             onChange={handleChange}
-            value={n3}
+            onBlur={handleBlur}
+            value={values.number3}
             maxLength={1}
           />
           <input
@@ -120,20 +142,40 @@ export function SmsModal({ values, handleChange, modalState, switchModal }) {
             ref={number4}
             name="number4"
             onChange={handleChange}
-            value={n4}
+            onBlur={handleBlur}
+            value={values.number4}
             maxLength={1}
           />
         </div>
         <button
           className={classes.modal_button}
           ref={smsButton}
-          //   onClick={timer}
-          disabled={timerState ? true : false}
+          disabled={checkSmsCode() ? false : timer1 === 0 ? false : true}
           style={{
-            backgroundColor: timerState ? "green" : "grey",
+            backgroundColor: checkSmsCode()
+              ? "green"
+              : timer1 === 0
+              ? "#72bf44"
+              : "grey",
+          }}
+          onClick={() => {
+            if (checkSmsCode() === true) {
+              const code =
+                values.number1 +
+                values.number2 +
+                values.number3 +
+                values.number4;
+
+              PostSmsCode(code);
+              switchModal(false);
+            }
           }}
         >
-          {timer1 === 0 ? "Продолжить" : `Запросить повторно через ${timer1}`}
+          {checkSmsCode()
+            ? "Продолжить"
+            : timer1 === 0
+            ? "Запросить код еще раз"
+            : `Запросить повторно через ${timer1}`}
         </button>
       </div>
     </div>

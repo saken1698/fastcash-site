@@ -96,6 +96,7 @@
     max-width: 400px;
     width: 100%;
 }
+
 .selection{
     box-sizing: border-box;
     border-radius: 5px;
@@ -384,7 +385,7 @@
     background: #c4c4c4;
   } */
 
-  .menu_list{
+  /* .menu_list{
     position: absolute;
     padding: 8px;
     opacity: 0;
@@ -406,9 +407,9 @@
     list-style: none;
     z-index: 3;
 
-}
+} */
 
-.menu_second_list{
+/* .menu_second_list{
     position: absolute;
     padding: 8px;
     opacity: 1;
@@ -446,7 +447,7 @@
 .row:hover{
     transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
     background-color: #f5f5f5;;
-}
+} */
 
 .loan_sum{
     /* position: relative; */

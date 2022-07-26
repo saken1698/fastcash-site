@@ -7,8 +7,10 @@ import { Form } from "../form/Form";
 import { Calculator } from "../calculator/Calculator";
 import { SmsModal } from "../smsModal/SmsModal";
 import { Checkboxes } from "../checkboxes/Checkboxes";
-import { prod } from "./constants";
 import { useValidation } from "../../hooks/useValidation";
+import { ProductSelector } from "../productSelector/ProductSelector";
+import { PartnerSelector } from "../partnerSelector/PartnerSelector";
+import { PostCredit } from "../../hooks/postCredit";
 
 function PayPage() {
   const { values, errors, handleBlur, handleChange } = useValidation();
@@ -27,10 +29,15 @@ function PayPage() {
   const [checkbox1, setCheckbox1] = useState("false");
   const [checkbox2, setCheckbox2] = useState("false");
 
-  const [modalState, setModalState] = useState(true);
-  function switchModal(state) {
-    setModalState(state);
-  }
+  const [modalState, setModalState] = useState(false);
+
+  const [state, setState] = useState(false);
+  const [state2, setState2] = useState(false);
+
+  const [product, setProduct] = useState("Выберите продукт");
+
+  const [partner, setPartner] = useState("Выберите партнера");
+  const [partnerId, setPartnerId] = useState("");
 
   function changePeriod(name) {
     data.forEach((item) => {
@@ -44,19 +51,6 @@ function PayPage() {
         setPeriods(month);
       }
     });
-  }
-
-  function checkSmsCode() {
-    if (
-      !errors.number1 &&
-      !errors.number2 &&
-      !errors.number3 &&
-      !errors.number4
-    ) {
-      return true;
-    } else {
-      return false;
-    }
   }
 
   const changeUIN = (e) => {
@@ -83,28 +77,6 @@ function PayPage() {
     }
   }
 
-  const [state, setState] = useState(false);
-  function changeState(state) {
-    setState((current) => !current);
-  }
-
-  const [state2, setState2] = useState(false);
-  function changeState2() {
-    setState2((current) => !current);
-  }
-
-  const [product, setProduct] = useState("Выберите продукт");
-  function changeProduct(product) {
-    setProduct(product);
-  }
-
-  const [partner, setPartner] = useState("Выберите партнера");
-  const [partnerId, setPartnerId] = useState("");
-  function changePartner(partner, id) {
-    setPartner(partner);
-    setPartnerId(id);
-  }
-
   function getData(product) {
     axios
       .get(
@@ -114,7 +86,8 @@ function PayPage() {
         setData(response.data.results);
         let item = response.data.results[0];
         if (response.data.results.length === 1) {
-          changePartner(item.name, item.id);
+          setPartner(item.name);
+          setPartnerId(item.id);
           changePeriod(item.name);
           setMinPeriod(item.products[0].period);
           setMaxPeriod(item.products[item.products.length - 1].period);
@@ -151,56 +124,19 @@ function PayPage() {
         </div>
         <div className={classes.calc}>
           <h3 className={classes.calc_title}>Заполните заявку</h3>
-          <div
-            className={classes.selection}
-            onClick={() => {
-              changeState(state);
-            }}
-          >
-            <p сlassName={classes.selection_text}>{product}</p>
-            <svg
-              className={classes.arrow}
-              viewBox="0 0 36 19"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              style={{
-                transform: state ? "rotate(0deg)" : "",
-              }}
-            >
-              <path
-                d="M34.3043 17.6548C33.2646 18.5008 31.7738 18.5008 30.7341 17.6548L18 7.29243L5.26593 17.6548C4.22623 18.5008 2.73543 18.5008 1.69574 17.6548C0.304932 16.523 0.304932 14.3992 1.69574 13.2675L18 -0.00013899L34.3043 13.2675C35.6951 14.3992 35.6951 16.523 34.3043 17.6548Z"
-                fill="#3D803D"
-              ></path>
-            </svg>
-            <ul
-              className={classes.menu_list}
-              style={{
-                display: state ? "block" : "none",
-                opacity: state ? "1" : "0",
-              }}
-            >
-              {prod.map((item) => {
-                return (
-                  <li
-                    className={classes.row}
-                    onClick={() => {
-                      changeProduct(item.name);
-                      getData(item.key);
-                      changePartner("Выберите партнера");
-                      setCashLimits([5000, 10000]);
-                      setCash(5000);
-                      setPeriod(3);
-                      setMaxPeriod(3);
-                      setMinPeriod(3);
-                      setRoundedValue(3);
-                    }}
-                  >
-                    {item.name}
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
+          <ProductSelector
+            getData={getData}
+            states={[state, product]}
+            setPeriod={setPeriod}
+            setCash={setCash}
+            setState={setState}
+            setProduct={setProduct}
+            setPartner={setPartner}
+            setCashLimits={setCashLimits}
+            setMaxPeriod={setMaxPeriod}
+            setMinPeriod={setMinPeriod}
+            setRoundedValue={setRoundedValue}
+          />
           <p
             className={classes.calc_tip}
             style={{
@@ -218,56 +154,13 @@ function PayPage() {
           >
             Вы выбрали товарный кредит
           </p>
-          <div
-            className={classes.selection}
-            onClick={() => {
-              changeState2();
-            }}
-            style={{
-              display:
-                product === "Выберите продукт"
-                  ? "none"
-                  : product === "Страховой полис ОГПО"
-                  ? "none"
-                  : "flex",
-            }}
-          >
-            <p сlassName={classes.selection_text}>{partner}</p>
-            <svg
-              className={classes.arrow}
-              viewBox="0 0 36 19"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              style={{
-                transform: state2 ? "rotate(0deg)" : "",
-              }}
-            >
-              <path
-                d="M34.3043 17.6548C33.2646 18.5008 31.7738 18.5008 30.7341 17.6548L18 7.29243L5.26593 17.6548C4.22623 18.5008 2.73543 18.5008 1.69574 17.6548C0.304932 16.523 0.304932 14.3992 1.69574 13.2675L18 -0.00013899L34.3043 13.2675C35.6951 14.3992 35.6951 16.523 34.3043 17.6548Z"
-                fill="#3D803D"
-              ></path>
-            </svg>
-            <ul
-              className={classes.menu_second_list}
-              style={{
-                display: state2 ? "block" : "none",
-              }}
-            >
-              {data.map((item) => {
-                return (
-                  <li
-                    className={classes.row}
-                    onClick={() => {
-                      changePartner(item.name, item.id);
-                      changePeriod(item.name);
-                    }}
-                  >
-                    {item.name}
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
+          <PartnerSelector
+            states={[product, partner, data, state2]}
+            changePeriod={changePeriod}
+            setState2={setState2}
+            setPartner={setPartner}
+            setPartnerId={setPartnerId}
+          />
           <Calculator
             data={data}
             data2={data2}
@@ -296,14 +189,24 @@ function PayPage() {
           />
           <Checkboxes
             handleChange={handleChange}
-            setCheckbox1={setCheckbox1}
-            setCheckbox2={setCheckbox2}
+            // setCheckbox1={setCheckbox1}
+            // setCheckbox2={setCheckbox2}
           />
           <button
             className={classes.button}
             disabled={checkErrors()}
             onClick={() => {
-              switchModal(true);
+              setModalState(true);
+              PostCredit(
+                cash,
+                period,
+                partnerId,
+                data2.product,
+                data2.repayment_method.id,
+                values.uin,
+                values.documentNumber,
+                values.phone
+              );
             }}
           >
             Отправить заявку
@@ -311,17 +214,7 @@ function PayPage() {
         </div>
       </div>
       <GettingStatus />
-      <SmsModal
-        values={[
-          values.number1,
-          values.number2,
-          values.number3,
-          values.number4,
-        ]}
-        handleChange={handleChange}
-        modalState={modalState}
-        switchModal={switchModal}
-      />
+      <SmsModal modalState={modalState} switchModal={setModalState} />
     </section>
   );
 }

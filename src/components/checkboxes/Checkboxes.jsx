@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./Checkboxes.module.css";
 
-export function Checkboxes({ handleChange, setCheckbox1, setCheckbox2 }) {
+export function Checkboxes({ handleChange }) {
   return (
     <div className={classes.checkboxes}>
       <div className={classes.checkbox}>
@@ -10,10 +10,10 @@ export function Checkboxes({ handleChange, setCheckbox1, setCheckbox2 }) {
           name="toggle"
           onChange={handleChange}
           className={classes.check}
-          onClick={() => {
-            setCheckbox1((current) => !current);
-            // handleChange();
-          }}
+          // onClick={() => {
+          //   setCheckbox1((current) => !current);
+          //   handleChange();
+          // }}
         />
         <label className={classes.term}>
           Я соглашаюсь на сбор и обработку моих персональных данных
@@ -25,9 +25,9 @@ export function Checkboxes({ handleChange, setCheckbox1, setCheckbox2 }) {
           name="toggle2"
           onChange={handleChange}
           className={classes.check}
-          onClick={() => {
-            setCheckbox2((current) => !current);
-          }}
+          // onClick={() => {
+          //   setCheckbox2((current) => !current);
+          // }}
         ></input>
         <label className={classes.term}>
           Я соглашаюсь на предоставление информации и получение отчета из
