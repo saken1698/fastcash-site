@@ -26,10 +26,8 @@ function PayPage() {
   const [data, setData] = useState([]);
   const [data2, setData2] = useState([]);
 
-  const [checkbox1, setCheckbox1] = useState("false");
-  const [checkbox2, setCheckbox2] = useState("false");
-
   const [modalState, setModalState] = useState(false);
+  const [timer1, setTimer1] = React.useState(20);
 
   const [state, setState] = useState(false);
   const [state2, setState2] = useState(false);
@@ -187,16 +185,13 @@ function PayPage() {
             changeUIN={changeUIN}
             changeDocumentNumber={changeDocumentNumber}
           />
-          <Checkboxes
-            handleChange={handleChange}
-            // setCheckbox1={setCheckbox1}
-            // setCheckbox2={setCheckbox2}
-          />
+          <Checkboxes handleChange={handleChange} />
           <button
             className={classes.button}
             disabled={checkErrors()}
             onClick={() => {
               setModalState(true);
+              setTimer1(60);
               PostCredit(
                 cash,
                 period,
@@ -214,7 +209,21 @@ function PayPage() {
         </div>
       </div>
       <GettingStatus />
-      <SmsModal modalState={modalState} switchModal={setModalState} />
+      <SmsModal
+        modalState={modalState}
+        switchModal={setModalState}
+        timer={timer1}
+        setTimer={setTimer1}
+        data={[
+          cash,
+          period,
+          partnerId,
+          data2,
+          values.uin,
+          values.documentNumber,
+          values.phone,
+        ]}
+      />
     </section>
   );
 }

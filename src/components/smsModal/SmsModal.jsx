@@ -4,12 +4,14 @@ import { useState, useEffect, useRef } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { PostSmsCode } from "../../hooks/postSmsCode";
+import { PostCredit } from "../../hooks/postCredit";
 
-export function SmsModal({ modalState, switchModal }) {
+export function SmsModal({ modalState, switchModal, timer, setTimer, data }) {
   const number = useRef(null);
   const number2 = useRef(null);
   const number3 = useRef(null);
   const number4 = useRef(null);
+  const [cash, period, partnerId, data2, uin, documentNumber, phone] = data;
   const { values, errors, handleBlur, handleChange, touched } = useFormik({
     initialValues: {
       number1: "",
@@ -55,20 +57,18 @@ export function SmsModal({ modalState, switchModal }) {
   }
   const smsButton = useRef(null);
 
-  const [timer1, setTimer1] = React.useState(20);
-
   React.useEffect(() => {
     const interval = setInterval(() => {
-      if (timer1 < 1) {
+      if (timer < 1) {
         return;
       }
-      setTimer1((prev) => prev - 1);
+      setTimer((prev) => prev - 1);
     }, 1000);
 
     return () => {
       clearInterval(interval);
     };
-  }, [timer1]);
+  }, [timer]);
 
   return (
     <div
@@ -150,11 +150,11 @@ export function SmsModal({ modalState, switchModal }) {
         <button
           className={classes.modal_button}
           ref={smsButton}
-          disabled={checkSmsCode() ? false : timer1 === 0 ? false : true}
+          disabled={checkSmsCode() ? false : timer === 0 ? false : true}
           style={{
             backgroundColor: checkSmsCode()
               ? "green"
-              : timer1 === 0
+              : timer === 0
               ? "#72bf44"
               : "grey",
           }}
@@ -168,14 +168,26 @@ export function SmsModal({ modalState, switchModal }) {
 
               PostSmsCode(code);
               switchModal(false);
+            } else if (timer === 0) {
+              PostCredit(
+                cash,
+                period,
+                partnerId,
+                data2.product,
+                data2.repayment_method.id,
+                uin,
+                documentNumber,
+                phone
+              );
+              setTimer(60);
             }
           }}
         >
           {checkSmsCode()
             ? "Продолжить"
-            : timer1 === 0
+            : timer === 0
             ? "Запросить код еще раз"
-            : `Запросить повторно через ${timer1}`}
+            : `Запросить повторно через ${timer}`}
         </button>
       </div>
     </div>
