@@ -22,11 +22,6 @@ function Header() {
     setState3((current) => !current);
   }
 
-  const menu = useRef(null);
-  const menu2 = useRef(null);
-  const menu3 = useRef(null);
-  const menuButton = useRef(null);
-
   return (
     <header className={classes.header}>
       <div
@@ -113,7 +108,6 @@ function Header() {
       <div className={classes.nav}>
         <div className={classes.nav_container}>
           <button
-            ref={menuButton}
             className={classes.nav_menu}
             onClick={(state) => {
               changeState(state);
@@ -136,7 +130,6 @@ function Header() {
               display: state ? "block" : "none",
               opacity: state ? "1" : "0",
             }}
-            ref={menu}
           >
             <Link to="/about" className={classes.row_link}>
               <li className={classes.row}>О компании</li>
@@ -148,7 +141,6 @@ function Header() {
               className={classes.row}
               onClick={(state2) => {
                 changeState2(state2);
-                // changeState(state);
               }}
             >
               Наши продукты
@@ -168,7 +160,6 @@ function Header() {
             style={{
               display: state2 ? "block" : "none",
             }}
-            ref={menu2}
           >
             <Link to="/calculator" className={classes.row_link}>
               <li className={classes.row}>Микрокредит "Своим"</li>
@@ -180,7 +171,6 @@ function Header() {
             style={{
               display: state3 ? "block" : "none",
             }}
-            ref={menu3}
           >
             <Link to="/faq" className={classes.row_link}>
               <li className={classes.row}>Вопросы и ответы</li>

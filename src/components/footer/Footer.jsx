@@ -1,18 +1,15 @@
 import React from "react";
 import classes from "./Footer.module.css";
 import { Link } from "react-router-dom";
-// import logo from "../../images/logo.svg";
 
 function Footer() {
   return (
     <footer className={classes.footer}>
-      {/* <img src={logo} className={classes.logo} /> */}
       <svg
         className={classes.logo}
         viewBox="0 0 226 68"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        // style="height: 40px;"
       >
         <path
           d="M29.3 67.8C29.3 67.8 0 59.1 0 16.4V0H58.7V16.4C58.6 57.6 29.3 67.8 29.3 67.8Z"

@@ -23,9 +23,12 @@ function Calculator({
     partner,
     partnerId,
   ] = states;
+
   const closest = periods.reduce(function (prev, curr) {
     return Math.abs(curr - period) < Math.abs(prev - period) ? curr : prev;
   });
+
+  const [state, setState] = useState(false);
 
   function changeCashLimits() {
     data.forEach((el) => {
@@ -158,10 +161,20 @@ function Calculator({
                 focusable="false"
                 viewBox="0 0 24 24"
                 aria-hidden="true"
+                onClick={() => {
+                  setState((current) => !current);
+                }}
               >
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"></path>
               </svg>
-              <div></div>
+              <div
+                className={classes.hint_hover}
+                style={{ opacity: state ? "1" : "0" }}
+              >
+                <p className={classes.hint_hoverText}>
+                  Платежи равными суммами
+                </p>
+              </div>
             </div>
           </div>
         </div>

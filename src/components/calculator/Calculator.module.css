@@ -82,13 +82,15 @@
     width: 16px;
     height: 16px;
     margin-left: 5px;
-    /* position: absolute; */
     bottom: 0px;
     fill: gray;
+    cursor: pointer;
+    
 }
 
 .hint{
     display: flex;
+    position: relative;
 }
 
 input[type=range] {
@@ -184,4 +186,24 @@ input[type=range] {
     margin: 0;
     margin-bottom: 10px;
     font-family: 'FF Good Pro Medium';
+}
+
+.hint_hover{
+  border-radius: 2px;
+  background-color: grey;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 28px;
+  left: 40px;
+  opacity: 0;
+}
+
+.hint_hoverText{
+  color: white;
+  text-align: center;
+  font-size: 11px;
+  margin: 6px 4px;
+  width: 130px;
+
 }
