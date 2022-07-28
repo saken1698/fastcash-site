@@ -1,26 +1,14 @@
 import React from "react";
 import classes from "./Header.module.css";
-// import logo from "../../images/logo.svg";
 import { Link } from "react-router-dom";
 import { useState, useRef } from "react";
 import { useEffect } from "react";
+import { HeaderNav } from "../headerNav/HeaderNav";
 
 function Header() {
   const [state, setState] = useState(false);
   const [state2, setState2] = useState(false);
   const [state3, setState3] = useState(false);
-
-  function changeState(state) {
-    setState((current) => !current);
-  }
-
-  function changeState2(state2) {
-    setState2((current) => !current);
-  }
-
-  function changeState3(state3) {
-    setState3((current) => !current);
-  }
 
   return (
     <header className={classes.header}>
@@ -42,7 +30,6 @@ function Header() {
             viewBox="0 0 226 68"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            // style="height: 40px;"
           >
             <path
               d="M29.3 67.8C29.3 67.8 0 59.1 0 16.4V0H58.7V16.4C58.6 57.6 29.3 67.8 29.3 67.8Z"
@@ -105,103 +92,12 @@ function Header() {
         </Link>
         <button className={classes.button}>Личный кабинет</button>
       </div>
-      <div className={classes.nav}>
-        <div className={classes.nav_container}>
-          <button
-            className={classes.nav_menu}
-            onClick={(state) => {
-              changeState(state);
-            }}
-          >
-            <svg
-              className={classes.svg}
-              focusable="false"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
-            </svg>
-            <div className={classes.nav_button}>Меню</div>
-          </button>
-
-          <ul
-            className={classes.menu_list}
-            style={{
-              display: state ? "block" : "none",
-              opacity: state ? "1" : "0",
-            }}
-          >
-            <Link to="/about" className={classes.row_link}>
-              <li className={classes.row}>О компании</li>
-            </Link>
-            <Link to="/documents" className={classes.row_link}>
-              <li className={classes.row}>Документы</li>
-            </Link>
-            <li
-              className={classes.row}
-              onClick={(state2) => {
-                changeState2(state2);
-              }}
-            >
-              Наши продукты
-            </li>
-            <li className={classes.row}>Что такое мирокредит</li>
-            <li
-              className={classes.row}
-              onClick={(evt) => {
-                changeState3(state3);
-              }}
-            >
-              FAQ
-            </li>
-          </ul>
-          <ul
-            className={classes.menu_second_list}
-            style={{
-              display: state2 ? "block" : "none",
-            }}
-          >
-            <Link to="/calculator" className={classes.row_link}>
-              <li className={classes.row}>Микрокредит "Своим"</li>
-            </Link>
-            <li className={classes.row}>ОГПО в рассрочку</li>
-          </ul>
-          <ul
-            className={classes.menu_third_list}
-            style={{
-              display: state3 ? "block" : "none",
-            }}
-          >
-            <Link to="/faq" className={classes.row_link}>
-              <li className={classes.row}>Вопросы и ответы</li>
-            </Link>
-            <Link to="/press-releases" className={classes.row_link}>
-              <li className={classes.row}>Пресс-релизы</li>
-            </Link>
-          </ul>
-          <div className={classes.links}>
-            <Link to="/how_to_get" className={classes.link}>
-              Как получить
-            </Link>
-            <Link to="/how_to_close" className={classes.link}>
-              Как погасить
-            </Link>
-            <Link to="/contacts" className={classes.link}>
-              Контакты
-            </Link>
-            <Link to="/dashboard" className={classes.link}>
-              Панель приборов
-            </Link>
-            <a
-              href="https://bankffin.kz/ru/loan/payment/repayment-loans#/#"
-              target="blank"
-              className={classes.link_pay}
-            >
-              <p className={classes.link_text}>Оплатить</p>
-            </a>
-          </div>
-        </div>
-      </div>
+      <HeaderNav
+        states={[state, state2, state3]}
+        setState={setState}
+        setState2={setState2}
+        setState3={setState3}
+      />
     </header>
   );
 }

@@ -1,13 +1,13 @@
 import React from "react";
 import classes from "./ProductSelector.module.css";
 import { prod } from "../payPage/constants";
+import { useState } from "react";
 
 export function ProductSelector({
   getData,
-  states,
+  product,
   setPeriod,
   setCash,
-  setState,
   setProduct,
   setPartner,
   setCashLimits,
@@ -15,10 +15,7 @@ export function ProductSelector({
   setMinPeriod,
   setRoundedValue,
 }) {
-  //   const [
-
-  //   ] = sets;
-  const [state, product] = states;
+  const [state, setState] = useState();
   return (
     <div
       className={classes.selection}

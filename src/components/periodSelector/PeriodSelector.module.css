@@ -1,62 +1,9 @@
-.calculation{
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-}
-
 .loan_title{
     margin-top: 0;
     font-size: 20px;
     font-weight: 600;
     text-align: left;
     font-family: 'FF Good Pro Regular';
-}
-
-.calculation_container{
-    margin-top: 20px;
-    margin-right: 20px;
-    background-color: #efefef;
-    border-radius: 20px;
-    padding: 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-    width: 100%;
-}
-
-.calculation_info{
-    margin-top: 20px;
-    background-color: #efefef;
-    border-radius: 20px;
-    padding: 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    
-
-}
-
-.results{
-    display: flex;
-    flex-direction: column;
-    width: 320px;
-}
-
-.result{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.result_text{
-    color: #3d803d;
-    margin-bottom: 10px;
-    font-size: 1rem;
-    margin-top: 0;
-    font-family: "FF Good Pro Medium";
-    font-weight: 500;
-    text-align: left;
 }
 
 .loan_sum{
@@ -76,21 +23,6 @@
     font-weight: 400;
     line-height: 1.2;
     font-family: 'Good Pro Regular';
-}
-
-.svg_icon{
-    width: 16px;
-    height: 16px;
-    margin-left: 5px;
-    bottom: 0px;
-    fill: gray;
-    cursor: pointer;
-    
-}
-
-.hint{
-    display: flex;
-    position: relative;
 }
 
 input[type=range] {
@@ -180,11 +112,3 @@ input[type=range] {
   input[type=range]:focus::-ms-fill-upper {
     background: #c4c4c4;
   }
-
-  .red{
-    color: red;
-    margin: 0;
-    margin-bottom: 10px;
-    font-family: 'FF Good Pro Medium';
-}
-

@@ -2,6 +2,35 @@ import React from "react";
 import { Map } from "../map/Map";
 import classes from "./GettingStatus.module.css";
 
+const steps = [
+  {
+    number: "01",
+    text: "Выберите компанию, где Вы хотели бы приобрести товар или услугу.",
+  },
+  { number: "02", text: "Узнайте решение сразу, заполнив всего три поля." },
+  {
+    number: "03",
+    text: "Готово. После одобрения вы можете сразу перейти к оформлению покупок.",
+  },
+];
+
+const procedure = [
+  { number: "01", text: "1. КОНСУЛЬТАЦИЯ ПО МИКРОКРЕДИТУ" },
+  { number: "02", text: "2. ЗАПОЛНЕНИЕ ЗАЯВЛЕНИЯ НА ВЫДАЧУ МИКРОКРЕДИТА" },
+  { number: "03", text: "3. РАССМОТРЕНИЕ ЗАЯВКИ ПО МИКРОКРЕДИТУ" },
+  {
+    number: "04",
+    text: `4. ПРИ ПОЛОЖИТЕЛЬНОМ РЕЗУЛЬТАТЕ - ПОДПИСАНИЕ ДОГОВОРА И ВЫДАЧА МИКРОКРЕДИТА`,
+  },
+];
+
+const methods = [
+  { number: "1", text: "ЧЕРЕЗ ЛИЧНЫЙ КАБИНЕТ МФО" },
+  { number: "2", text: "ЧЕРЕЗ КАССУ ФОРТЕ БАНКА" },
+  { number: "3", text: "ЧЕРЕЗ КИВИ ТЕРМИНАЛ" },
+  { number: "4", text: "ЧЕРЕЗ ТЕРМИНАЛЫ КАССА 24" },
+];
+
 function GettingStatus() {
   return (
     <div className={classes.container}>
@@ -16,31 +45,16 @@ function GettingStatus() {
       <div className={classes.instructions}>
         <p className={classes.headline}>Как узнать статус одобрения на займ?</p>
         <div className={classes.steps}>
-          <div className={classes.step}>
-            <div className={classes.number}>
-              <p className={classes.num}>01</p>
-            </div>
-            <p className={classes.text}>
-              Выберите компанию, где Вы хотели бы приобрести товар или услугу.
-            </p>
-          </div>
-          <div className={classes.step}>
-            <div className={classes.number}>
-              <p className={classes.num}>02</p>
-            </div>
-            <p className={classes.text}>
-              Узнайте решение сразу, заполнив всего три поля.
-            </p>
-          </div>
-          <div className={classes.step}>
-            <div className={classes.number}>
-              <p className={classes.num}>03</p>
-            </div>
-            <p className={classes.text}>
-              Готово. После одобрения вы можете сразу перейти к оформлению
-              покупок.
-            </p>
-          </div>
+          {steps.map((item) => {
+            return (
+              <div className={classes.step}>
+                <div className={classes.number}>
+                  <p className={classes.num}>{item.number}</p>
+                </div>
+                <p className={classes.text}>{item.text}</p>
+              </div>
+            );
+          })}
         </div>
       </div>
       <div className={classes.procedure}>
@@ -48,60 +62,29 @@ function GettingStatus() {
           Простая процедура оформления микрокредита:
         </p>
         <div className={classes.procedure_steps}>
-          <div className={classes.procedure_step}>
-            <p className={classes.procedure_number}>01</p>
-            <p className={classes.procedure_stepDis}>
-              1. КОНСУЛЬТАЦИЯ ПО МИКРОКРЕДИТУ
-            </p>
-          </div>
-          <div className={classes.procedure_step}>
-            <p className={classes.procedure_number}>02</p>
-            <p className={classes.procedure_stepDis}>
-              2. ЗАПОЛНЕНИЕ ЗАЯВЛЕНИЯ НА ВЫДАЧУ МИКРОКРЕДИТА
-            </p>
-          </div>
-          <div className={classes.procedure_step}>
-            <p className={classes.procedure_number}>03</p>
-            <p className={classes.procedure_stepDis}>
-              3. РАССМОТРЕНИЕ ЗАЯВКИ ПО МИКРОКРЕДИТУ
-            </p>
-          </div>
-          <div className={classes.procedure_step}>
-            <p className={classes.procedure_number}>04</p>
-            <p className={classes.procedure_stepDis}>
-              4. ПРИ ПОЛОЖИТЕЛЬНОМ РЕЗУЛЬТАТЕ - ПОДПИСАНИЕ ДОГОВОРА И ВЫДАЧА
-              МИКРОКРЕДИТА
-            </p>
-          </div>
+          {procedure.map((item) => {
+            return (
+              <div className={classes.procedure_step}>
+                <p className={classes.procedure_number}>{item.number}</p>
+                <p className={classes.procedure_stepDis}>{item.text}</p>
+              </div>
+            );
+          })}
         </div>
       </div>
       <div className={classes.methods}>
         <p className={classes.methods_title}>Способы оплаты микрокредита</p>
         <div className={classes.methods_list}>
-          <div className={classes.method}>
-            <div className={classes.method_num}>
-              <p className={classes.method_number}>1</p>
-            </div>
-            <p className={classes.method_text}>ЧЕРЕЗ ЛИЧНЫЙ КАБИНЕТ МФО</p>
-          </div>
-          <div className={classes.method}>
-            <div className={classes.method_num}>
-              <p className={classes.method_number}>2</p>
-            </div>
-            <p className={classes.method_text}>ЧЕРЕЗ КАССУ ФОРТЕ БАНКА</p>
-          </div>
-          <div className={classes.method}>
-            <div className={classes.method_num}>
-              <p className={classes.method_number}>3</p>
-            </div>
-            <p className={classes.method_text}>ЧЕРЕЗ КИВИ ТЕРМИНАЛ</p>
-          </div>
-          <div className={classes.method}>
-            <div className={classes.method_num}>
-              <p className={classes.method_number}>4</p>
-            </div>
-            <p className={classes.method_text}>ЧЕРЕЗ ТЕРМИНАЛЫ КАССА 24</p>
-          </div>
+          {methods.map((item) => {
+            return (
+              <div className={classes.method}>
+                <div className={classes.method_num}>
+                  <p className={classes.method_number}>{item.number}</p>
+                </div>
+                <p className={classes.method_text}>{item.text}</p>
+              </div>
+            );
+          })}
         </div>
       </div>
       <div className={classes.map}>

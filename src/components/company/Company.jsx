@@ -2,6 +2,13 @@ import React from "react";
 import Navigation from "../navigation/Navigation";
 import classes from "./Company.module.css";
 
+const requisites = [
+  { title: "БИН", text: "190340008954" },
+  { title: "БИК", text: "KSNVKZKA" },
+  { title: "IBAN", text: "KZ45551A127015670KZT" },
+  { title: "КБЕ", text: "15" },
+];
+
 function Company() {
   return (
     <section className={classes.section}>
@@ -28,30 +35,16 @@ function Company() {
           <p className={classes.requisites_headline}>
             <b>АО «Банк Фридом Финанс Казахстан»</b>
           </p>
-          <div className={classes.requisites_info}>
-            <p className={classes.requisites_title}>
-              <b>БИН</b>
-            </p>
-            <p className={classes.requisites_text}>190340008954</p>
-          </div>
-          <div className={classes.requisites_info}>
-            <p className={classes.requisites_title}>
-              <b>БИК</b>
-            </p>
-            <p className={classes.requisites_text}>KSNVKZKA</p>
-          </div>
-          <div className={classes.requisites_info}>
-            <p className={classes.requisites_title}>
-              <b>IBAN</b>
-            </p>
-            <p className={classes.requisites_text}>KZ45551A127015670KZT</p>
-          </div>
-          <div className={classes.requisites_info}>
-            <p className={classes.requisites_title}>
-              <b>КБЕ</b>
-            </p>
-            <p className={classes.requisites_text}>15</p>
-          </div>
+          {requisites.map((item) => {
+            return (
+              <div className={classes.requisites_info}>
+                <p className={classes.requisites_title}>
+                  <b>{item.title}</b>
+                </p>
+                <p className={classes.requisites_text}>{item.text}</p>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

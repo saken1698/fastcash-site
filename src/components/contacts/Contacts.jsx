@@ -1,25 +1,10 @@
 import React from "react";
 import Navigation from "../navigation/Navigation";
-import classes from "./Contact.module.css";
+import classes from "./Contacts.module.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Map } from "../map/Map";
 function Contacts() {
-  const [data, setData] = useState("");
-  useEffect(() => {
-    function getData() {
-      axios
-        .get(
-          "https://tile2.maps.2gis.com/poi?x=5848&y=3002&z=13&v=1&ts=online_hd"
-        )
-        .then((response) => {
-          setData(response.data);
-          console.log(response);
-        });
-    }
-    getData();
-  }, []);
-
   return (
     <section className={classes.section}>
       <Navigation name="Контакты" />

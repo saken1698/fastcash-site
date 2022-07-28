@@ -1,74 +1,14 @@
 import React from "react";
 import classes from "./smsModal.module.css";
-import { useState, useEffect, useRef } from "react";
-import { useFormik } from "formik";
-import * as Yup from "yup";
 import { PostSmsCode } from "../../hooks/postSmsCode";
-import { PostCredit } from "../../hooks/postCredit";
+// import { usePostCredit } from "../../hooks/postCredit";
+import { useSmsValidation } from "../../hooks/useSmsValidation";
+import { SmsModalInputs } from "../smsModalInputs/SmsModalInputs";
+import { SmsModalButton } from "../smsModalButton/SmsModalButton";
 
 export function SmsModal({ modalState, switchModal, timer, setTimer, data }) {
-  const number = useRef(null);
-  const number2 = useRef(null);
-  const number3 = useRef(null);
-  const number4 = useRef(null);
-  const [cash, period, partnerId, data2, uin, documentNumber, phone] = data;
-  const { values, errors, handleBlur, handleChange, touched } = useFormik({
-    initialValues: {
-      number1: "",
-      number2: "",
-      number3: "",
-      number4: "",
-    },
-    validationSchema: Yup.object({
-      number1: Yup.string()
-        .matches(/^[0-9]+$/, "Must be only digits")
-        .required("required"),
-      number2: Yup.string()
-        .matches(/^[0-9]+$/, "Must be only digits")
-        .required("required"),
-      number3: Yup.string()
-        .matches(/^[0-9]+$/, "Must be only digits")
-        .required("required"),
-      number4: Yup.string()
-        .matches(/^[0-9]+$/, "Must be only digits")
-        .required("required"),
-    }),
-  });
-
-  function checkSmsCode() {
-    if (touched.number1 && touched.number2 && touched.number3) {
-      if (
-        !errors.number1 &&
-        !errors.number2 &&
-        !errors.number3 &&
-        !errors.number4
-      ) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-  }
-
-  function changeFocus(ref, value) {
-    if (value.length === 1) {
-      ref.current.focus();
-    }
-  }
-  const smsButton = useRef(null);
-
-  React.useEffect(() => {
-    const interval = setInterval(() => {
-      if (timer < 1) {
-        return;
-      }
-      setTimer((prev) => prev - 1);
-    }, 1000);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, [timer]);
+  const { values, errors, handleBlur, handleChange, touched } =
+    useSmsValidation();
 
   return (
     <div
@@ -97,98 +37,23 @@ export function SmsModal({ modalState, switchModal, timer, setTimer, data }) {
             fill="black"
           ></path>
         </svg>
-
         <p className={classes.modal_text}>Введите код из SMS</p>
-        <div className={classes.modal_inputs}>
-          <input
-            className={classes.modal_input}
-            ref={number}
-            name="number1"
-            value={values.number1}
-            onKeyUp={() => {
-              changeFocus(number2, values.number1);
-            }}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            maxLength={1}
-          />
-
-          <input
-            className={classes.modal_input}
-            ref={number2}
-            onKeyUp={() => {
-              changeFocus(number3, values.number2);
-            }}
-            name="number2"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            value={values.number2}
-            maxLength={1}
-          />
-          <input
-            className={classes.modal_input}
-            ref={number3}
-            onKeyUp={() => {
-              changeFocus(number4, values.number3);
-            }}
-            name="number3"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            value={values.number3}
-            maxLength={1}
-          />
-          <input
-            className={classes.modal_input}
-            ref={number4}
-            name="number4"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            value={values.number4}
-            maxLength={1}
-          />
-        </div>
-        <button
-          className={classes.modal_button}
-          ref={smsButton}
-          disabled={checkSmsCode() ? false : timer === 0 ? false : true}
-          style={{
-            backgroundColor: checkSmsCode()
-              ? "green"
-              : timer === 0
-              ? "#72bf44"
-              : "grey",
-          }}
-          onClick={() => {
-            if (checkSmsCode() === true) {
-              const code =
-                values.number1 +
-                values.number2 +
-                values.number3 +
-                values.number4;
-
-              PostSmsCode(code);
-              switchModal(false);
-            } else if (timer === 0) {
-              PostCredit(
-                cash,
-                period,
-                partnerId,
-                data2.product,
-                data2.repayment_method.id,
-                uin,
-                documentNumber,
-                phone
-              );
-              setTimer(60);
-            }
-          }}
-        >
-          {checkSmsCode()
-            ? "Продолжить"
-            : timer === 0
-            ? "Запросить код еще раз"
-            : `Запросить повторно через ${timer}`}
-        </button>
+        <SmsModalInputs
+          values={values}
+          handleBlur={handleBlur}
+          handleChange={handleChange}
+        />
+        <SmsModalButton
+          timer={timer}
+          setTimer={setTimer}
+          touched={touched}
+          errors={errors}
+          data={data}
+          values={values}
+          PostSmsCode={PostSmsCode}
+          switchModal={switchModal}
+          // PostCredit={PostCredit}
+        />
       </div>
     </div>
   );

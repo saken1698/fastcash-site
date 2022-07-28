@@ -1,0 +1,20 @@
+.modal_inputs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  position: relative;
+}
+
+.modal_input {
+  border-radius: 5px;
+  min-width: 40px;
+  width: 100%;
+  background-color: #efefef;
+  color: #000;
+  height: 53px;
+  outline: none;
+  box-sizing: border-box;
+  border: 1px solid #c4c4c4;
+  text-align: center;
+  font-size: 1.5625rem;
+}

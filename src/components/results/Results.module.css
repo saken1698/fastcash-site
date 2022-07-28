@@ -1,0 +1,82 @@
+.calculation_info{
+    margin-top: 20px;
+    background-color: #efefef;
+    border-radius: 20px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+
+}
+
+.loan_title{
+    margin-top: 0;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: left;
+    font-family: 'FF Good Pro Regular';
+}
+
+.results{
+    display: flex;
+    flex-direction: column;
+    width: 320px;
+}
+
+.result{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.result_text{
+    color: #3d803d;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    margin-top: 0;
+    font-family: "FF Good Pro Medium";
+    font-weight: 500;
+    text-align: left;
+}
+
+.svg_icon{
+    width: 16px;
+    height: 16px;
+    margin-left: 5px;
+    bottom: 0px;
+    fill: gray;
+    cursor: pointer;
+    
+}
+
+.hint{
+    display: flex;
+    position: relative;
+}
+
+.hint_hover{
+    border-radius: 2px;
+    background-color: grey;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 28px;
+    left: 40px;
+    opacity: 0;
+  }
+  
+  .hint_hoverText{
+    color: white;
+    text-align: center;
+    font-size: 11px;
+    margin: 6px 4px;
+    width: 130px;
+  
+  }
+  .red{
+    color: red;
+    margin: 0;
+    margin-bottom: 10px;
+    font-family: 'FF Good Pro Medium';
+}

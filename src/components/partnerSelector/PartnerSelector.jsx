@@ -1,14 +1,15 @@
 import React from "react";
 import classes from "./PartnerSelector.module.css";
+import { useState } from "react";
 
 export function PartnerSelector({
   states,
   changePeriod,
-  setState2,
   setPartner,
   setPartnerId,
 }) {
-  const [product, partner, data, state2] = states;
+  const [product, partner, data] = states;
+  const [state2, setState2] = useState(false);
   return (
     <div
       className={classes.selection}

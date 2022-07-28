@@ -64,7 +64,6 @@ function PressRealeses() {
         <div className={classes.questions}>
           <p className={classes.question}>
             <b>
-              {" "}
               Штрафы и пени за просрочку ежемесячных платежей по микрокредитам
               взиматься не будут:
             </b>
