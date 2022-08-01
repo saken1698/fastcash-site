@@ -1,7 +1,8 @@
 import React from "react";
 import classes from "./SmsModalButton.module.css";
 import { useRef } from "react";
-import { PostCredit } from "../../hooks/postCredit";
+import { useCreditPost } from "../../hooks/useCreditPost";
+import { useSmsPosting } from "../../hooks/useSmsPosting";
 
 export function SmsModalButton({
   timer,
@@ -10,11 +11,13 @@ export function SmsModalButton({
   errors,
   data,
   values,
-  PostSmsCode,
   switchModal,
 }) {
   const [cash, period, partnerId, data2, uin, documentNumber, phone] = data;
   const smsButton = useRef(null);
+
+  const { postCode } = useSmsPosting();
+  const { postCredit } = useCreditPost();
 
   React.useEffect(() => {
     const interval = setInterval(() => {
@@ -60,11 +63,10 @@ export function SmsModalButton({
         if (checkSmsCode() === true) {
           const code =
             values.number1 + values.number2 + values.number3 + values.number4;
-
-          PostSmsCode(code);
+          postCode(code);
           switchModal(false);
         } else if (timer === 0) {
-          PostCredit(
+          postCredit(
             cash,
             period,
             partnerId,

@@ -1,0 +1,162 @@
+@font-face {
+  font-family: "FF Good Pro Regular";
+  src: local("FF Good Pro Regular"), local("FF-Good-Pro-Regular"),
+    url("../../fonts/FFGoodPro-Regular.woff2") format("woff2"),
+    url("../../fonts/FFGoodPro-Regular.woff") format("woff"),
+    url("../../fonts/FFGoodPro-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "FF Good Pro Medium";
+  src: local("FF Good Pro Medium"), local("FF-Good-Pro-Medium"),
+    url("../../fonts/FFGoodPro-Medium.woff2") format("woff2"),
+    url("../../fonts/FFGoodPro-Medium.woff") format("woff"),
+    url("../../fonts/FFGoodPro-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+.red {
+  color: red;
+  margin: 0;
+  margin-bottom: 10px;
+  font-family: "FF Good Pro Medium";
+}
+.calc_container {
+  background-image: url("../../images/calc_bg.png");
+  object-fit: contain;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-top: 120px;
+  position: relative;
+  z-index: 1;
+}
+
+.calc_container:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: -1;
+}
+
+.title {
+  margin: 0;
+  margin-left: 15px;
+  margin-top: 40px;
+  margin-right: 40px;
+  font-size: 60px;
+  font-family: "FF Good Pro Regular";
+  margin-bottom: 40px;
+  color: #fff;
+  text-align: left;
+}
+
+.text {
+  margin-left: 15px;
+  text-align: left;
+  font-size: 30px;
+  line-height: 38px;
+  font-family: "FF Good Pro Regular";
+  color: #fff;
+}
+
+.calc {
+  padding: 40px 30px;
+  background: linear-gradient(
+      202.16deg,
+      rgba(55, 168, 62, 0.78) 36.23%,
+      #295b29 93.86%
+    ),
+    rgba(245, 245, 245, 0.5);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 1000px;
+  width: 100%;
+  margin-right: 15px;
+  max-width: 615px;
+  z-index: 2;
+  position: relative;
+}
+
+.calc_title {
+  margin: 0;
+  font-family: "FF Good Pro Light";
+  margin-bottom: 30px;
+  font-size: 1.5625rem;
+  color: #fff;
+}
+
+.calc_text {
+  max-width: 400px;
+  width: 100%;
+}
+
+.selection {
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding: 0 20px 0 25px;
+  min-width: 100px;
+  cursor: pointer;
+  background-color: white;
+  height: 33px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 300px;
+  justify-content: space-between;
+}
+
+.section {
+  font-family: "FF Good Pro Regular";
+}
+
+.selection_text {
+  color: #3d803d;
+  font-size: 14px;
+  font-family: "Good Pro Regular";
+}
+
+.calc_tip {
+  padding-left: 20px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: #fff;
+  text-align: left;
+}
+
+.arrow {
+  width: 20px;
+  height: 10px;
+  margin-right: 10px;
+  transform: rotate(180deg);
+}
+
+.button {
+  width: 250px;
+  height: 50px;
+  border-radius: 10px;
+  border: 1px solid white;
+  background-color: #76b949;
+  color: white;
+  font-size: 18px;
+  /* margin-top: 20px; */
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.button:disabled {
+  background-color: #7a7a7a98;
+  color: #dfdfdf98;
+  border: 1px solid transparent;
+  cursor: not-allowed;
+}

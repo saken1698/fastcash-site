@@ -36,6 +36,6 @@ export function useCheckingSms(errors, values) {
       }
     }
     checkErrors();
-  });
+  }, [errors, values]);
   return checked;
 }

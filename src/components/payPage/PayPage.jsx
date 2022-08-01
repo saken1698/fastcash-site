@@ -18,6 +18,7 @@ function PayPage() {
   const [timer1, setTimer1] = React.useState(20);
 
   const [partnerId, setPartnerId] = useState("");
+  const [part, setPart] = [{ partner: "", id: "" }];
 
   return (
     <section className={classes.section}>
@@ -26,6 +27,10 @@ function PayPage() {
         states={[data2, period, cash, partnerId]}
         handleChange={handleChange}
         setPartnerId={setPartnerId}
+        ////
+        part={part}
+        setPart={setPart}
+        ////
         setData2={setData2}
         setPeriod={setPeriod}
         setCash={setCash}

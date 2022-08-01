@@ -1,7 +1,5 @@
 import React from "react";
 import classes from "./smsModal.module.css";
-import { PostSmsCode } from "../../hooks/postSmsCode";
-// import { usePostCredit } from "../../hooks/postCredit";
 import { useSmsValidation } from "../../hooks/useSmsValidation";
 import { SmsModalInputs } from "../smsModalInputs/SmsModalInputs";
 import { SmsModalButton } from "../smsModalButton/SmsModalButton";
@@ -50,7 +48,6 @@ export function SmsModal({ modalState, switchModal, timer, setTimer, data }) {
           errors={errors}
           data={data}
           values={values}
-          PostSmsCode={PostSmsCode}
           switchModal={switchModal}
           // PostCredit={PostCredit}
         />

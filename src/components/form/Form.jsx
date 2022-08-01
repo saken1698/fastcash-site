@@ -2,8 +2,20 @@ import React from "react";
 import NumberFormat from "react-number-format";
 import classes from "./From.module.css";
 
-function Form({ handleChange, changeUIN, changeDocumentNumber, values }) {
+function Form({ handleChange, values }) {
   const [phone, uin, document] = values;
+
+  const changeUIN = (e) => {
+    if (e.currentTarget.value.length < 13) {
+      handleChange(e);
+    }
+  };
+
+  const changeDocumentNumber = (e) => {
+    if (e.target.value.length < 10) {
+      handleChange(e);
+    }
+  };
 
   return (
     <div className={classes.form}>
