@@ -13,26 +13,18 @@ export function CreditSelector({
   states,
   info,
   handleChange,
-  getData,
-  changePeriod,
-  setPeriod,
-  setCash,
+  setCredit,
   setProduct,
-  setPartner,
-  setMaxPeriod,
-  setMinPeriod,
-  setPartnerId,
-  postData,
+  setData2,
   setModalState,
   setTimer,
+  setPart,
+  setCreditPeriod,
+  setData,
 }) {
-  const [data2, period, cash, partnerId] = states;
-  const [product, data, partner, periods, validation, minPeriod, maxPeriod] =
-    info;
+  const [data2, period, credit, part] = states;
+  const [product, data, validation] = info;
   const [values, errors] = validation;
-
-  const [cashLimits, setCashLimits] = useState([5000, 100000]);
-  const [roundedValue, setRoundedValue] = useState(0);
   const checked = useCheckingSms(errors, values);
   const { postCredit } = useCreditPost();
 
@@ -40,16 +32,13 @@ export function CreditSelector({
     <div className={classes.calc}>
       <h3 className={classes.calc_title}>Заполните заявку</h3>
       <ProductSelector
-        getData={getData}
+        setData={setData}
         product={product}
-        setPeriod={setPeriod}
-        setCash={setCash}
+        setCredit={setCredit}
         setProduct={setProduct}
-        setPartner={setPartner}
-        setCashLimits={setCashLimits}
-        setMaxPeriod={setMaxPeriod}
-        setMinPeriod={setMinPeriod}
-        setRoundedValue={setRoundedValue}
+        setPart={setPart}
+        setCreditPeriod={setCreditPeriod}
+        data={data}
       />
       <p
         className={classes.calc_tip}
@@ -69,30 +58,17 @@ export function CreditSelector({
         Вы выбрали товарный кредит
       </p>
       <PartnerSelector
-        states={[product, partner, data]}
-        changePeriod={changePeriod}
-        setPartner={setPartner}
-        setPartnerId={setPartnerId}
+        states={[product, part, data]}
+        setPart={setPart}
+        setCreditPeriod={setCreditPeriod}
       />
       <Calculator
         data={data}
         data2={data2}
-        postData={postData}
-        states={[
-          periods,
-          period,
-          cash,
-          cashLimits,
-          roundedValue,
-          minPeriod,
-          maxPeriod,
-          partner,
-          partnerId,
-        ]}
-        setCashLimits={setCashLimits}
-        setRoundedValue={setRoundedValue}
-        setPeriod={setPeriod}
-        setCash={setCash}
+        setData2={setData2}
+        states={[period, credit, part]}
+        setCreditPeriod={setCreditPeriod}
+        setCredit={setCredit}
       />
       <Form
         handleChange={handleChange}
@@ -105,16 +81,7 @@ export function CreditSelector({
         onClick={() => {
           setModalState(true);
           setTimer(60);
-          postCredit(
-            cash,
-            period,
-            partnerId,
-            data2.product,
-            data2.repayment_method.id,
-            values.uin,
-            values.documentNumber,
-            values.phone
-          );
+          postCredit(credit.cash, period.roundedValue, part.id, data, values);
         }}
       >
         Отправить заявку

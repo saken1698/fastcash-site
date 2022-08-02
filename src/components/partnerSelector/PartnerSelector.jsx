@@ -1,15 +1,12 @@
 import React from "react";
 import classes from "./PartnerSelector.module.css";
 import { useState } from "react";
+import { usePeriodUpdate } from "../../hooks/usePeriodUpdate";
 
-export function PartnerSelector({
-  states,
-  changePeriod,
-  setPartner,
-  setPartnerId,
-}) {
-  const [product, partner, data] = states;
+export function PartnerSelector({ states, setPart, setCreditPeriod }) {
+  const [product, part, data] = states;
   const [state2, setState2] = useState(false);
+  const { changePeriod } = usePeriodUpdate();
   return (
     <div
       className={classes.selection}
@@ -25,7 +22,7 @@ export function PartnerSelector({
             : "flex",
       }}
     >
-      <p сlassName={classes.selection_text}>{partner}</p>
+      <p сlassName={classes.selection_text}>{part.partner}</p>
       <svg
         className={classes.arrow}
         viewBox="0 0 36 19"
@@ -50,10 +47,10 @@ export function PartnerSelector({
           return (
             <li
               className={classes.row}
+              key={item.name}
               onClick={() => {
-                setPartner(item.name);
-                setPartnerId(item.id);
-                changePeriod(item.name);
+                changePeriod(data, item.name, setCreditPeriod);
+                setPart({ ...part, partner: `${item.name}`, id: `${item.id}` });
               }}
             >
               {item.name}

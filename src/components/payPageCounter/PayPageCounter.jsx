@@ -1,78 +1,21 @@
 import React from "react";
 import classes from "./PayPageCounter.module.css";
 import { useState } from "react";
-import axios from "axios";
 import { CreditSelector } from "../creditSelector/CreditSelector";
 
 export function PayPageCounter({
   validation,
   states,
   handleChange,
-  setPartnerId,
   setData2,
-  setPeriod,
-  setCash,
+  setCredit,
   setTimer,
   setModalState,
   setPart,
+  setCreditPeriod,
 }) {
-  const [minPeriod, setMinPeriod] = useState(3);
-  const [maxPeriod, setMaxPeriod] = useState(3);
-  const [periods, setPeriods] = useState([3]);
   const [data, setData] = useState([]);
-
-  const [partner, setPartner] = useState("Выберите партнера");
   const [product, setProduct] = useState("Выберите продукт");
-
-  function changePeriod(name) {
-    data.forEach((item) => {
-      if (item.name === name) {
-        setMinPeriod(item.products[0].period);
-        setMaxPeriod(item.products[item.products.length - 1].period);
-        let month = [];
-        item.products.forEach((el) => {
-          month.push(el.period);
-        });
-        setPeriods(month);
-      }
-    });
-  }
-
-  function getData(product) {
-    axios
-      .get(
-        `https://fastcash-back.trafficwave.kz/apply-landing/products?product=${product}`
-      )
-      .then((response) => {
-        setData(response.data.results);
-        let item = response.data.results[0];
-        if (response.data.results.length === 1) {
-          setPartner(item.name);
-          setPart({ partner: `${item.name}`, id: `${item.id}` });
-          setPartnerId(item.id);
-          changePeriod(item.name);
-          setMinPeriod(item.products[0].period);
-          setMaxPeriod(item.products[item.products.length - 1].period);
-          let month = [];
-          item.products.forEach((el) => {
-            month.push(el.period);
-          });
-          setPeriods(month);
-        }
-      });
-  }
-
-  function postData(partner, cash, period) {
-    axios
-      .post("https://fastcash-back.trafficwave.kz/apply-landing/schedule", {
-        partner: partner,
-        principal: cash,
-        period: period,
-      })
-      .then((response) => {
-        setData2(response.data);
-      });
-  }
 
   return (
     <div className={classes.calc_container}>
@@ -85,28 +28,16 @@ export function PayPageCounter({
       </div>
       <CreditSelector
         states={states}
-        info={[
-          product,
-          data,
-          partner,
-          periods,
-          validation,
-          minPeriod,
-          maxPeriod,
-        ]}
+        info={[product, data, validation]}
         handleChange={handleChange}
-        getData={getData}
-        changePeriod={changePeriod}
-        setPeriod={setPeriod}
-        setCash={setCash}
+        setCredit={setCredit}
         setProduct={setProduct}
-        setPartner={setPartner}
-        setMaxPeriod={setMaxPeriod}
-        setMinPeriod={setMinPeriod}
-        setPartnerId={setPartnerId}
-        postData={postData}
+        setPart={setPart}
+        setData2={setData2}
         setTimer={setTimer}
         setModalState={setModalState}
+        setCreditPeriod={setCreditPeriod}
+        setData={setData}
       />
     </div>
   );

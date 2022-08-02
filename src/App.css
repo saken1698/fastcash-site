@@ -1,3 +1,33 @@
+@font-face {
+  font-family: "FF Good Pro Regular";
+  src: local("FF Good Pro Regular"), local("FF-Good-Pro-Regular"),
+    url("./fonts/FFGoodPro-Regular.woff2") format("woff2"),
+    url("./fonts/FFGoodPro-Regular.woff") format("woff"),
+    url("./fonts/FFGoodPro-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "FF Good Pro Medium";
+  src: local("FF Good Pro Medium"), local("FF-Good-Pro-Medium"),
+    url("./fonts/FFGoodPro-Medium.woff2") format("woff2"),
+    url("./fonts/FFGoodPro-Medium.woff") format("woff"),
+    url("./fonts/FFGoodPro-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "FF Good Pro Light";
+  src: local("FF Good Pro Light"), local("FF-Good-Pro-Light"),
+    url("./fonts/FFGoodPro-Light.woff2") format("woff2"),
+    url("./fonts/FFGoodPro-Light.woff") format("woff"),
+    url("./fonts/FFGoodPro-Light.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
 .App {
   text-align: center;
 }

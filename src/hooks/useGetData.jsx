@@ -2,9 +2,8 @@ import React from "react";
 import { useState } from "react";
 import axios from "axios";
 
-export function useGetData(product) {
-  const [data, setData] = useState();
-  function GetData(product) {
+export function useGetData() {
+  function getData(product, setData, setPart, changePeriod) {
     axios
       .get(
         `https://fastcash-back.trafficwave.kz/apply-landing/products?product=${product}`
@@ -13,6 +12,5 @@ export function useGetData(product) {
         setData(response.data.results);
       });
   }
-  GetData(product);
-  return data;
+  return { getData };
 }

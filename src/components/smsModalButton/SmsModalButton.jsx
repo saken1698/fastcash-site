@@ -13,7 +13,7 @@ export function SmsModalButton({
   values,
   switchModal,
 }) {
-  const [cash, period, partnerId, data2, uin, documentNumber, phone] = data;
+  const [credit, period, partnerId, data2, info] = data;
   const smsButton = useRef(null);
 
   const { postCode } = useSmsPosting();
@@ -66,16 +66,7 @@ export function SmsModalButton({
           postCode(code);
           switchModal(false);
         } else if (timer === 0) {
-          postCredit(
-            cash,
-            period,
-            partnerId,
-            data2.product,
-            data2.repayment_method.id,
-            uin,
-            documentNumber,
-            phone
-          );
+          postCredit(credit.cash, period.roundedValue, partnerId, data2, info);
           setTimer(60);
         }
       }}

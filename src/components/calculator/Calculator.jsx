@@ -8,41 +8,34 @@ import { PeriodSelector } from "../periodSelector/PeriodSelector";
 function Calculator({
   data,
   data2,
-  postData,
+  setData2,
   states,
-  setCash,
-  setCashLimits,
-  setPeriod,
-  setRoundedValue,
+  setCredit,
+  setCreditPeriod,
 }) {
-  const [
-    periods,
-    period,
-    cash,
-    cashLimits,
-    roundedValue,
-    minPeriod,
-    maxPeriod,
-    partner,
-    partnerId,
-  ] = states;
+  const [period, credit, part] = states;
 
-  const closest = periods.reduce(function (prev, curr) {
-    return Math.abs(curr - period) < Math.abs(prev - period) ? curr : prev;
+  const closest = period.periods.reduce(function (prev, curr) {
+    return Math.abs(curr - period.current) < Math.abs(prev - period.current)
+      ? curr
+      : prev;
   });
 
   const [state, setState] = useState(false);
 
   function changeCashLimits() {
     data.forEach((el) => {
-      if (el.name === partner) {
+      if (el.name === part.partner) {
         let cashArray = [];
         el.products.forEach((item) => {
-          if (item.period === roundedValue) {
+          if (item.period === period.roundedValue) {
             cashArray.push(item.principal_min);
             cashArray.push(item.principal_max);
           }
-          setCashLimits(cashArray);
+          setCredit((prev) => ({
+            ...prev,
+            cashLimits: cashArray,
+          }));
         });
       }
     });
@@ -52,29 +45,19 @@ function Calculator({
     <div className={classes.calculation}>
       <div className={classes.calculation_container}>
         <CashSelector
-          cashLimits={cashLimits}
-          cash={cash}
-          roundedValue={roundedValue}
-          partnerId={partnerId}
-          setCash={setCash}
+          credit={credit}
+          setCredit={setCredit}
+          part={part.id}
           closest={closest}
-          setRoundedValue={setRoundedValue}
-          postData={postData}
+          setData2={setData2}
+          setCreditPeriod={setCreditPeriod}
+          period={period}
         />
         <PeriodSelector
-          values={[
-            period,
-            maxPeriod,
-            minPeriod,
-            roundedValue,
-            closest,
-            partnerId,
-            cash,
-          ]}
-          setPeriod={setPeriod}
-          setRoundedValue={setRoundedValue}
+          values={[period, closest, part.id, credit]}
+          setCreditPeriod={setCreditPeriod}
           changeCashLimits={changeCashLimits}
-          postData={postData}
+          setData2={setData2}
         />
       </div>
       <Results data={data2} state={state} setState={setState} />

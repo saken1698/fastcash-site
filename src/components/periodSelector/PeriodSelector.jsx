@@ -1,15 +1,15 @@
 import React from "react";
+import { usePostData } from "../../hooks/usePostData";
 import classes from "./PeriodSelector.module.css";
 
 export function PeriodSelector({
   values,
-  setPeriod,
-  setRoundedValue,
+  setCreditPeriod,
   changeCashLimits,
-  postData,
+  setData2,
 }) {
-  const [period, maxPeriod, minPeriod, roundedValue, closest, partnerId, cash] =
-    values;
+  const [period, closest, partnerId, credit] = values;
+  const { postData } = usePostData();
 
   return (
     <div className={classes.loan_sum}>
@@ -19,13 +19,14 @@ export function PeriodSelector({
           className={classes.zipper_text}
           style={{
             left:
-              period != minPeriod
+              period.current != period.min
                 ? `calc(${
-                    ((roundedValue - minPeriod) * 100) / (maxPeriod - minPeriod)
+                    ((period.roundedValue - period.min) * 100) /
+                    (period.max - period.min)
                   }% + ${
                     5 -
-                    (((roundedValue - minPeriod) * 100) /
-                      (maxPeriod - minPeriod)) *
+                    (((period.roundedValue - period.min) * 100) /
+                      (period.max - period.min)) *
                       0.2
                   }px)`
                 : `${5}%`,
@@ -39,17 +40,19 @@ export function PeriodSelector({
           className={classes.range}
           name="period"
           onChange={(evt) => {
-            setPeriod(evt.currentTarget.value);
-            setRoundedValue(closest);
+            setCreditPeriod((prev) => ({
+              ...prev,
+              current: evt.target.value,
+              roundedValue: closest,
+            }));
             changeCashLimits();
           }}
           onMouseUp={(evt) => {
-            postData(partnerId, cash, roundedValue);
+            postData(partnerId, credit.cash, period.roundedValue, setData2);
           }}
           value={closest}
-          min={minPeriod}
-          max={maxPeriod}
-          list="tickmarks"
+          min={period.min}
+          max={period.max}
         />
       </div>
     </div>

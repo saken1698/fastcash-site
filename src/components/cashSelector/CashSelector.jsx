@@ -1,16 +1,17 @@
 import React from "react";
+import { usePostData } from "../../hooks/usePostData";
 import classes from "./CashSelector.module.css";
 
 export function CashSelector({
-  cashLimits,
-  cash,
-  roundedValue,
-  partnerId,
-  setCash,
+  credit,
+  part,
+  setCredit,
   closest,
-  setRoundedValue,
-  postData,
+  setData2,
+  period,
+  setCreditPeriod,
 }) {
+  const { postData } = usePostData();
   return (
     <div className={classes.loan_sum}>
       <p className={classes.loan_title}>Сумма займа, тнг</p>
@@ -20,35 +21,41 @@ export function CashSelector({
           type="range"
           className={classes.range}
           name="cash"
-          min={cashLimits[0]}
-          max={cashLimits[1]}
+          min={credit.cashLimits[0]}
+          max={credit.cashLimits[1]}
           step={2500}
           onMouseUp={(evt) => {
-            postData(partnerId, cash, roundedValue);
+            postData(part, credit.cash, period.roundedValue, setData2);
           }}
           onChange={(evt) => {
-            setCash(evt.currentTarget.value);
-            setRoundedValue(closest);
+            setCredit((prev) => ({
+              ...prev,
+              cash: evt.target.value,
+            }));
+            setCreditPeriod((prev) => ({
+              ...prev,
+              roundedValue: closest,
+            }));
           }}
         ></input>
         <span
           className={classes.zipper_text}
           style={{
             left:
-              cash != 5000
+              credit.cash != 5000
                 ? `calc(${
-                    ((cash - cashLimits[0]) * 100) /
-                    (cashLimits[1] - cashLimits[0])
+                    ((credit.cash - credit.cashLimits[0]) * 100) /
+                    (credit.cashLimits[1] - credit.cashLimits[0])
                   }% + ${
                     1 -
-                    (((cash - cashLimits[0]) * 100) /
-                      (cashLimits[1] - cashLimits[0])) *
+                    (((credit.cash - credit.cashLimits[0]) * 100) /
+                      (credit.cashLimits[1] - credit.cashLimits[0])) *
                       0.3
                   }px)`
                 : `-1%`,
           }}
         >
-          {cash}
+          {credit.cash}
         </span>
       </div>
     </div>

@@ -49,7 +49,6 @@ export function SmsModal({ modalState, switchModal, timer, setTimer, data }) {
           data={data}
           values={values}
           switchModal={switchModal}
-          // PostCredit={PostCredit}
         />
       </div>
     </div>

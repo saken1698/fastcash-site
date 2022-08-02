@@ -1,21 +1,41 @@
-import React from "react";
+import React, { useEffect } from "react";
 import classes from "./ProductSelector.module.css";
 import { prod } from "../payPage/constants";
 import { useState } from "react";
+import { useGetData } from "../../hooks/useGetData";
+import { usePeriodUpdate } from "../../hooks/usePeriodUpdate";
 
 export function ProductSelector({
-  getData,
+  setData,
   product,
-  setPeriod,
-  setCash,
+  setCredit,
   setProduct,
-  setPartner,
-  setCashLimits,
-  setMaxPeriod,
-  setMinPeriod,
-  setRoundedValue,
+  setPart,
+  setCreditPeriod,
+  data,
 }) {
   const [state, setState] = useState();
+  const { getData } = useGetData();
+  const { changePeriod } = usePeriodUpdate();
+
+  useEffect(() => {
+    function checkDataLength() {
+      if (data.length === 1) {
+        let item = data[0];
+        setPart({ partner: `${item.name}`, id: `${item.id}` });
+        changePeriod(data, item.name, setCreditPeriod);
+        setCredit((prev) => ({
+          ...prev,
+          cashLimits: [
+            item.products[0].principal_min,
+            item.products[0].principal_max,
+          ],
+        }));
+      }
+    }
+    checkDataLength();
+  }, [data]);
+
   return (
     <div
       className={classes.selection}
@@ -48,17 +68,24 @@ export function ProductSelector({
         {prod.map((item) => {
           return (
             <li
+              key={item.name}
               className={classes.row}
               onClick={() => {
                 setProduct(item.name);
-                getData(item.key);
-                setPartner("Выберите партнера");
-                setCashLimits([5000, 10000]);
-                setCash(5000);
-                setPeriod(3);
-                setMaxPeriod(3);
-                setMinPeriod(3);
-                setRoundedValue(3);
+                getData(item.key, setData, setPart);
+                setPart({ partner: "Выберите партнера", id: "" });
+                setCredit((prev) => ({
+                  ...prev,
+                  cahs: 5000,
+                  cashLimit: [5000, 10000],
+                }));
+                setCreditPeriod((prev) => ({
+                  ...prev,
+                  min: 3,
+                  max: 3,
+                  current: 3,
+                  setRoundedValue: 3,
+                }));
               }}
             >
               {item.name}
